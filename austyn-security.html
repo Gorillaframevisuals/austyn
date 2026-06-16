@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Austyn Ntoubandi — IT Security voor Belgische KMO's</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Outfit', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            ink: '#07080F',
+            surface: '#0E1018',
+            card: '#131722',
+            border: '#1E2235',
+            blue: {
+              accent: '#4F6EF7',
+              soft: '#3B55E0',
+              glow: 'rgba(79,110,247,0.15)',
+            },
+            violet: '#7C3AED',
+            emerald: {
+              accent: '#10B981',
+              glow: 'rgba(16,185,129,0.12)',
+            },
+          },
+          boxShadow: {
+            glow: '0 0 40px rgba(79,110,247,0.18)',
+            'glow-em': '0 0 40px rgba(16,185,129,0.14)',
+            card: '0 1px 3px rgba(0,0,0,0.4), 0 4px 24px rgba(0,0,0,0.3)',
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: 0, transform: 'translateY(24px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #07080F;
+      color: #E5E7EB;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, .font-display {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Hero grid pattern */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #4F6EF7 0%, #7C3AED 50%, #10B981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-blue {
+      background: linear-gradient(135deg, #7EB3FF 0%, #4F6EF7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Glowing orb */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    /* Card hover */
+    .service-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 0 0 1px rgba(79,110,247,0.4), 0 20px 60px rgba(0,0,0,0.5), 0 0 50px rgba(79,110,247,0.12);
+    }
+
+    .problem-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 0 1px rgba(239,68,68,0.3), 0 16px 48px rgba(0,0,0,0.5);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Pill badge */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Nav blur */
+    .nav-blur {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* Step connector line */
+    .step-line {
+      position: absolute;
+      top: 28px;
+      left: calc(50% + 36px);
+      right: calc(-50% + 36px);
+      height: 1px;
+      background: linear-gradient(90deg, rgba(79,110,247,0.5), rgba(79,110,247,0.1));
+    }
+
+    /* Input styles */
+    .form-input {
+      background: #0E1018;
+      border: 1px solid #1E2235;
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: #E5E7EB;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: #4F6EF7;
+      box-shadow: 0 0 0 3px rgba(79,110,247,0.12);
+    }
+
+    .form-input::placeholder {
+      color: #4B5563;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #07080F; }
+    ::-webkit-scrollbar-thumb { background: #1E2235; border-radius: 3px; }
+
+    /* Mobile nav */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- NAVIGATION                                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-[#1E2235] bg-[rgba(7,8,15,0.85)]">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4F6EF7] to-[#7C3AED] flex items-center justify-center">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1L2 4V8C2 11.3 4.6 14.4 8 15C11.4 14.4 14 11.3 14 8V4L8 1Z" fill="white" fill-opacity="0.9"/>
+        </svg>
+      </div>
+      <span class="font-display font-700 text-[15px] text-white tracking-tight">Austyn Ntoubandi</span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#diensten" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">Diensten</a>
+      <a href="#waarom" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">Waarom Ik</a>
+      <a href="#tarieven" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">Tarieven</a>
+      <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">Contact</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="hidden md:flex items-center gap-3">
+      <a href="#contact" class="pill bg-[rgba(79,110,247,0.12)] text-[#7EB3FF] border border-[rgba(79,110,247,0.25)] hover:bg-[rgba(79,110,247,0.2)] transition-all duration-200 cursor-pointer text-[11px]">
+        <i data-lucide="shield-check" class="w-3 h-3"></i>
+        Gratis Security Scan
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button id="menu-toggle" class="md:hidden text-gray-400 hover:text-white" aria-label="Menu openen">
+      <i data-lucide="menu" class="w-5 h-5"></i>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden border-t border-[#1E2235] bg-[#07080F]">
+    <div class="px-6 py-4 flex flex-col gap-4">
+      <a href="#diensten" class="text-sm text-gray-400 hover:text-white transition-colors font-medium" onclick="document.getElementById('mobile-menu').classList.remove('open')">Diensten</a>
+      <a href="#waarom" class="text-sm text-gray-400 hover:text-white transition-colors font-medium" onclick="document.getElementById('mobile-menu').classList.remove('open')">Waarom Ik</a>
+      <a href="#tarieven" class="text-sm text-gray-400 hover:text-white transition-colors font-medium" onclick="document.getElementById('mobile-menu').classList.remove('open')">Tarieven</a>
+      <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors font-medium" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
+      <a href="#contact" class="pill bg-[rgba(79,110,247,0.12)] text-[#7EB3FF] border border-[rgba(79,110,247,0.25)] w-fit text-[11px]">
+        <i data-lucide="shield-check" class="w-3 h-3"></i>
+        Gratis Security Scan
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- HERO SECTION                                        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="hero-grid relative min-h-screen flex items-center pt-16 overflow-hidden">
+  <!-- Ambient orbs -->
+  <div class="orb w-[600px] h-[600px] bg-[#4F6EF7] top-[-100px] left-[-200px]"></div>
+  <div class="orb w-[400px] h-[400px] bg-[#7C3AED] bottom-[-50px] right-[-100px]"></div>
+  <div class="orb w-[300px] h-[300px] bg-[#10B981] top-[30%] right-[10%] opacity-20"></div>
+
+  <div class="max-w-7xl mx-auto px-6 py-28 relative z-10 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Copy -->
+      <div>
+        <div class="pill bg-[rgba(16,185,129,0.08)] text-emerald-400 border border-[rgba(16,185,129,0.2)] mb-8 w-fit text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block"></span>
+          Beschikbaar voor Belgische KMO's — 100% Remote
+        </div>
+
+        <h1 class="font-display text-5xl lg:text-6xl xl:text-[68px] font-800 leading-[1.05] tracking-tight text-white mb-6">
+          Uw Microsoft 365<br/>
+          <span class="gradient-text">veilig.</span><br/>
+          Uw business <span class="gradient-text">beschermd.</span>
+        </h1>
+
+        <p class="text-lg text-gray-400 leading-relaxed max-w-lg mb-10 font-light">
+          Als student-ondernemer in System & Network Management beveilig ik de digitale infrastructuur van Belgische KMO's — betaalbaar, grondig, en 100% op afstand. Expert-level beveiliging zonder het corporate prijskaartje.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-display font-600 text-[15px] text-white bg-gradient-to-r from-[#4F6EF7] to-[#7C3AED] hover:opacity-90 hover:shadow-glow transition-all duration-300 cursor-pointer">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            Start Gratis Scan
+          </a>
+          <a href="#diensten" class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-display font-600 text-[15px] text-gray-300 bg-[rgba(255,255,255,0.04)] border border-[#1E2235] hover:border-[rgba(79,110,247,0.4)] hover:text-white transition-all duration-300">
+            Ontdek Diensten
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="mt-12 flex flex-wrap items-center gap-6">
+          <div class="flex items-center gap-2 text-xs text-gray-500">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-[#4F6EF7]"></i>
+            <span>Reactie binnen 24u</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-gray-500">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#4F6EF7]"></i>
+            <span>Gebaseerd in België</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-gray-500">
+            <i data-lucide="file-check" class="w-3.5 h-3.5 text-[#4F6EF7]"></i>
+            <span>NIS2-compliant advies</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Profile card -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="relative">
+          <!-- Glow ring -->
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#4F6EF7] to-[#7C3AED] blur-2xl opacity-25 scale-105"></div>
+
+          <div class="relative bg-[#131722] border border-[#1E2235] rounded-2xl p-8 shadow-card w-[340px]">
+            <!-- Profile picture placeholder -->
+            <div class="w-full h-56 rounded-xl bg-gradient-to-br from-[#0E1018] to-[#1E2235] border border-[#2A3050] flex flex-col items-center justify-center mb-6 relative overflow-hidden">
+              <div class="orb w-32 h-32 bg-[#4F6EF7] top-[-20px] right-[-20px] opacity-20 blur-2xl"></div>
+              <i data-lucide="user-circle-2" class="w-16 h-16 text-[#2A3050] mb-2"></i>
+              <p class="text-[11px] text-gray-600 font-medium tracking-wide uppercase">Jouw foto hier</p>
+            </div>
+
+            <div class="mb-4">
+              <p class="font-display font-700 text-lg text-white">Austyn Ntoubandi</p>
+              <p class="text-sm text-gray-500 mt-0.5">IT Security Specialist · Student-ondernemer</p>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(79,110,247,0.06)] border border-[rgba(79,110,247,0.12)]">
+                <i data-lucide="graduation-cap" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+                <span class="text-xs text-gray-400">System & Network Management — HOGENT</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(16,185,129,0.06)] border border-[rgba(16,185,129,0.12)]">
+                <i data-lucide="shield" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                <span class="text-xs text-gray-400">Microsoft 365 & Cloud Security Expert</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(124,58,237,0.06)] border border-[rgba(124,58,237,0.12)]">
+                <i data-lucide="building-2" class="w-4 h-4 text-violet-400 flex-shrink-0"></i>
+                <span class="text-xs text-gray-400">Student-ondernemer onder Belgisch recht</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PROBLEM SECTION                                     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="relative py-28 border-t border-[#1E2235]">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+      <div class="pill bg-[rgba(239,68,68,0.08)] text-red-400 border border-[rgba(239,68,68,0.2)] mb-6 mx-auto w-fit text-[11px]">
+        <i data-lucide="alert-triangle" class="w-3 h-3"></i>
+        Het echte risico
+      </div>
+      <h2 class="font-display text-4xl lg:text-5xl font-800 text-white leading-tight mb-5">
+        87% van de KMO's is<br/>
+        <span class="gradient-text-blue">kwetsbaar zonder het te weten</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light leading-relaxed">
+        Phishing, slecht geconfigureerde cloud-omgevingen en de nieuwe NIS2-wetgeving maken cybersecurity geen optie meer — maar een verplichting.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Problem 1 -->
+      <div class="problem-card bg-[#131722] border border-[#1E2235] rounded-2xl p-8 transition-all duration-300 cursor-default shadow-card">
+        <div class="w-12 h-12 rounded-xl bg-[rgba(239,68,68,0.08)] border border-[rgba(239,68,68,0.15)] flex items-center justify-center mb-6">
+          <i data-lucide="fish" class="w-5 h-5 text-red-400"></i>
+        </div>
+        <h3 class="font-display font-700 text-xl text-white mb-3">Phishing & Social Engineering</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Eén klik op een malafide link kan uw volledige bedrijfsdata compromitteren. Zonder MFA en awareness training zijn uw medewerkers de zwakste schakel in uw beveiliging.
+        </p>
+        <div class="mt-6 pt-6 border-t border-[#1E2235] flex items-center gap-2">
+          <span class="text-red-400 font-display font-700 text-2xl">91%</span>
+          <span class="text-gray-500 text-xs leading-tight">van cyberaanvallen<br/>start met phishing</span>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="problem-card bg-[#131722] border border-[#1E2235] rounded-2xl p-8 transition-all duration-300 cursor-default shadow-card">
+        <div class="w-12 h-12 rounded-xl bg-[rgba(234,179,8,0.08)] border border-[rgba(234,179,8,0.15)] flex items-center justify-center mb-6">
+          <i data-lucide="cloud-off" class="w-5 h-5 text-yellow-400"></i>
+        </div>
+        <h3 class="font-display font-700 text-xl text-white mb-3">Verkeerd Geconfigureerde SharePoint</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Openbare SharePoint-mappen, te ruime toegangsrechten en ontbrekende data-classificatie zorgen dat gevoelige documenten vrij toegankelijk zijn — ook voor onbevoegden.
+        </p>
+        <div class="mt-6 pt-6 border-t border-[#1E2235] flex items-center gap-2">
+          <span class="text-yellow-400 font-display font-700 text-2xl">63%</span>
+          <span class="text-gray-500 text-xs leading-tight">van KMO's heeft<br/>open permissies in M365</span>
+        </div>
+      </div>
+
+      <!-- Problem 3 -->
+      <div class="problem-card bg-[#131722] border border-[#1E2235] rounded-2xl p-8 transition-all duration-300 cursor-default shadow-card">
+        <div class="w-12 h-12 rounded-xl bg-[rgba(79,110,247,0.08)] border border-[rgba(79,110,247,0.15)] flex items-center justify-center mb-6">
+          <i data-lucide="shield-x" class="w-5 h-5 text-[#4F6EF7]"></i>
+        </div>
+        <h3 class="font-display font-700 text-xl text-white mb-3">Geen MFA + NIS2-deadline</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          De Europese NIS2-richtlijn verplicht Belgische bedrijven tot aantoonbare beveiligingsmaatregelen. Geen multi-factor authenticatie instellen is niet alleen gevaarlijk — het kan nu ook boetes opleveren.
+        </p>
+        <div class="mt-6 pt-6 border-t border-[#1E2235] flex items-center gap-2">
+          <span class="text-[#4F6EF7] font-display font-700 text-2xl">NIS2</span>
+          <span class="text-gray-500 text-xs leading-tight">Nu actief in België —<br/>bent u compliant?</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NIS2 banner -->
+    <div class="mt-8 bg-gradient-to-r from-[rgba(79,110,247,0.07)] to-[rgba(124,58,237,0.07)] border border-[rgba(79,110,247,0.18)] rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-5">
+      <div class="w-10 h-10 rounded-xl bg-[rgba(79,110,247,0.1)] border border-[rgba(79,110,247,0.2)] flex items-center justify-center flex-shrink-0">
+        <i data-lucide="scale" class="w-5 h-5 text-[#4F6EF7]"></i>
+      </div>
+      <div class="flex-1 text-center sm:text-left">
+        <p class="font-display font-600 text-white text-sm">De NIS2-richtlijn is van kracht in België</p>
+        <p class="text-gray-400 text-sm mt-1">Bedrijven in sectoren zoals zorg, vastgoed en financiën zijn verplicht hun digitale beveiliging aantoonbaar op orde te hebben. Ik help u compliant worden — snel en betaalbaar.</p>
+      </div>
+      <a href="#contact" class="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-display font-600 text-[#7EB3FF] border border-[rgba(79,110,247,0.3)] hover:bg-[rgba(79,110,247,0.1)] transition-all duration-200 whitespace-nowrap">
+        Ga compliant
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SERVICES SECTION                                    -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="diensten" class="py-28 border-t border-[#1E2235]">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+      <div class="pill bg-[rgba(79,110,247,0.08)] text-[#7EB3FF] border border-[rgba(79,110,247,0.2)] mb-6 mx-auto w-fit text-[11px]">
+        <i data-lucide="layers" class="w-3 h-3"></i>
+        Mijn expertise
+      </div>
+      <h2 class="font-display text-4xl lg:text-5xl font-800 text-white leading-tight mb-5">
+        Drie pijlers,<br/>
+        <span class="gradient-text">volledige bescherming</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto font-light">
+        Elke dienst is ontworpen om snel inzetbaar te zijn en direct meetbare resultaten te leveren voor uw KMO.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+
+      <!-- Service 1 -->
+      <div class="service-card group bg-[#131722] border border-[#1E2235] rounded-2xl p-8 transition-all duration-300 cursor-default">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4F6EF7] to-[#7C3AED] flex items-center justify-center mb-6 group-hover:shadow-glow transition-all duration-300">
+          <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+        </div>
+        <div class="pill bg-[rgba(79,110,247,0.06)] text-[#4F6EF7] border border-[rgba(79,110,247,0.15)] mb-4 w-fit text-[10px]">Meest gevraagd</div>
+        <h3 class="font-display font-700 text-xl text-white mb-3 leading-snug">Microsoft 365 Security Audit & Inrichting</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+          Grondige analyse van uw M365-omgeving: gebruikersrechten, Conditional Access, MFA-configuratie, SharePoint-beveiliging en meer. Inclusief een helder actierapport en remote implementatie.
+        </p>
+        <ul class="flex flex-col gap-2.5">
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+            Multi-Factor Authenticatie (MFA) setup
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+            Conditional Access Policies
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+            SharePoint & Teams rechtenbeveiliging
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+            Defender for Business activatie
+          </li>
+        </ul>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card group bg-[#131722] border border-[#1E2235] rounded-2xl p-8 transition-all duration-300 cursor-default">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0EA5E9] to-[#4F6EF7] flex items-center justify-center mb-6 group-hover:shadow-[0_0_30px_rgba(14,165,233,0.3)] transition-all duration-300">
+          <i data-lucide="network" class="w-5 h-5 text-white"></i>
+        </div>
+        <div class="pill bg-[rgba(14,165,233,0.06)] text-sky-400 border border-[rgba(14,165,233,0.15)] mb-4 w-fit text-[10px]">Remote & Snel</div>
+        <h3 class="font-display font-700 text-xl text-white mb-3 leading-snug">Remote Netwerk & VPN Beveiliging</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+          Uw netwerk is de ingang tot alles. Ik audit uw routerconfiguratie, stel een beveiligde VPN in voor thuiswerkers en segmenteer uw netwerk om schade bij een inbraak te beperken.
+        </p>
+        <ul class="flex flex-col gap-2.5">
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-400 flex-shrink-0"></i>
+            VPN-configuratie voor remote werkers
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-400 flex-shrink-0"></i>
+            Netwerksegmentatie & firewall-review
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-400 flex-shrink-0"></i>
+            VLAN-isolatie voor gasten & IoT
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-400 flex-shrink-0"></i>
+            DNS-filtering & monitoring
+          </li>
+        </ul>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card group bg-[#131722] border border-[#1E2235] rounded-2xl p-8 transition-all duration-300 cursor-default">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#10B981] to-[#0EA5E9] flex items-center justify-center mb-6 group-hover:shadow-glow-em transition-all duration-300">
+          <i data-lucide="cloud" class="w-5 h-5 text-white"></i>
+        </div>
+        <div class="pill bg-[rgba(16,185,129,0.06)] text-emerald-400 border border-[rgba(16,185,129,0.15)] mb-4 w-fit text-[10px]">Set & Forget</div>
+        <h3 class="font-display font-700 text-xl text-white mb-3 leading-snug">Cloud Automatisering & Back-up</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+          Geen manuele back-ups meer. Ik automatiseer uw cloudback-upstrategie via Microsoft Azure of OneDrive, stel herstelscenario's in en verifieer regelmatig of uw data veilig is.
+        </p>
+        <ul class="flex flex-col gap-2.5">
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+            Automatische back-ups via Azure/OneDrive
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+            Disaster recovery plan & testen
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+            Power Automate security workflows
+          </li>
+          <li class="flex items-center gap-2.5 text-sm text-gray-400">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+            Maandelijkse back-up verificatie
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- WHY ME / STUDENT-ENTREPRENEUR ADVANTAGE            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="waarom" class="py-28 border-t border-[#1E2235] relative overflow-hidden">
+  <div class="orb w-[500px] h-[500px] bg-[#7C3AED] top-[10%] right-[-200px] opacity-15"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Stats grid -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-2 bg-gradient-to-br from-[#4F6EF7] to-[#7C3AED] rounded-2xl p-8 text-white">
+          <p class="font-display font-800 text-5xl mb-2">3×</p>
+          <p class="font-display font-600 text-lg leading-tight">Goedkoper dan<br/>een IT-bureau</p>
+          <p class="text-blue-100 text-sm mt-3 font-light">Zelfde kwaliteit, geen overhead, geen suit-kosten.</p>
+        </div>
+        <div class="bg-[#131722] border border-[#1E2235] rounded-2xl p-6">
+          <i data-lucide="zap" class="w-6 h-6 text-yellow-400 mb-3"></i>
+          <p class="font-display font-700 text-2xl text-white mb-1">48u</p>
+          <p class="text-gray-500 text-xs leading-snug">Gemiddelde opleveringstijd eerste rapport</p>
+        </div>
+        <div class="bg-[#131722] border border-[#1E2235] rounded-2xl p-6">
+          <i data-lucide="refresh-cw" class="w-6 h-6 text-[#4F6EF7] mb-3"></i>
+          <p class="font-display font-700 text-2xl text-white mb-1">100%</p>
+          <p class="text-gray-500 text-xs leading-snug">Remote uitgevoerd — geen bezoek nodig</p>
+        </div>
+        <div class="bg-[#131722] border border-[#1E2235] rounded-2xl p-6">
+          <i data-lucide="book-open" class="w-6 h-6 text-emerald-400 mb-3"></i>
+          <p class="font-display font-700 text-2xl text-white mb-1">Up-to-date</p>
+          <p class="text-gray-500 text-xs leading-snug">Actief studerend — altijd de nieuwste kennis</p>
+        </div>
+        <div class="bg-[#131722] border border-[#1E2235] rounded-2xl p-6">
+          <i data-lucide="message-circle" class="w-6 h-6 text-violet-400 mb-3"></i>
+          <p class="font-display font-700 text-2xl text-white mb-1">Direct</p>
+          <p class="text-gray-500 text-xs leading-snug">U praat met de expert — geen helpdesk tussendoor</p>
+        </div>
+      </div>
+
+      <!-- Right: Copy -->
+      <div>
+        <div class="pill bg-[rgba(124,58,237,0.08)] text-violet-400 border border-[rgba(124,58,237,0.2)] mb-8 w-fit text-[11px]">
+          <i data-lucide="sparkles" class="w-3 h-3"></i>
+          Waarom mij kiezen
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl font-800 text-white leading-tight mb-6">
+          Het slimme alternatief<br/>voor het<br/>
+          <span class="gradient-text">overpriced IT-bureau</span>
+        </h2>
+        <p class="text-gray-400 text-lg leading-relaxed mb-8 font-light">
+          Als 21-jarige student in System & Network Management studeer ik dagelijks de nieuwste dreigingen, tools en best practices. Grote IT-bedrijven rekenen u €150–200/uur aan voor kennis die ze jaren geleden opdeden. Ik lever hetzelfde niveau — gefocust, modern, en betaalbaar.
+        </p>
+
+        <div class="flex flex-col gap-4">
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[rgba(79,110,247,0.04)] border border-[rgba(79,110,247,0.1)]">
+            <div class="w-8 h-8 rounded-lg bg-[rgba(79,110,247,0.1)] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i data-lucide="target" class="w-4 h-4 text-[#4F6EF7]"></i>
+            </div>
+            <div>
+              <p class="font-display font-600 text-white text-sm mb-1">Gefocust op KMO-realiteit</p>
+              <p class="text-gray-500 text-xs leading-relaxed">Geen enterprise-overkill. Ik begrijp dat een boekhoudkantoor andere behoeften heeft dan een multinational.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[rgba(16,185,129,0.04)] border border-[rgba(16,185,129,0.1)]">
+            <div class="w-8 h-8 rounded-lg bg-[rgba(16,185,129,0.1)] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i data-lucide="trending-up" class="w-4 h-4 text-emerald-400"></i>
+            </div>
+            <div>
+              <p class="font-display font-600 text-white text-sm mb-1">Transparant & eerlijk geprijsd</p>
+              <p class="text-gray-500 text-xs leading-relaxed">Vaste tarieven, geen verrassingen. U weet op voorhand wat u betaalt en wat u krijgt.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-xl bg-[rgba(124,58,237,0.04)] border border-[rgba(124,58,237,0.1)]">
+            <div class="w-8 h-8 rounded-lg bg-[rgba(124,58,237,0.1)] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i data-lucide="handshake" class="w-4 h-4 text-violet-400"></i>
+            </div>
+            <div>
+              <p class="font-display font-600 text-white text-sm mb-1">Persoonlijk betrokken</p>
+              <p class="text-gray-500 text-xs leading-relaxed">U bent mijn klant, niet een ticketnummer. Ik ben persoonlijk bereikbaar en houd u op de hoogte van elke stap.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- HOW IT WORKS / PROCESS                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="py-28 border-t border-[#1E2235]">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+      <div class="pill bg-[rgba(16,185,129,0.08)] text-emerald-400 border border-[rgba(16,185,129,0.2)] mb-6 mx-auto w-fit text-[11px]">
+        <i data-lucide="route" class="w-3 h-3"></i>
+        Zo werkt het
+      </div>
+      <h2 class="font-display text-4xl lg:text-5xl font-800 text-white leading-tight mb-5">
+        Van kwetsbaar naar<br/>
+        <span class="gradient-text">veilig in 3 stappen</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto font-light">
+        Geen langdurige trajecten, geen IT-jargon. Direct resultaat op basis van uw situatie.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 relative">
+
+      <!-- Connector lines (desktop) -->
+      <div class="hidden md:block absolute top-[52px] left-[calc(16.66%+32px)] right-[calc(16.66%+32px)] h-px bg-gradient-to-r from-[rgba(79,110,247,0.4)] via-[rgba(79,110,247,0.2)] to-[rgba(79,110,247,0.4)]"></div>
+
+      <!-- Step 1 -->
+      <div class="flex flex-col items-center text-center group">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#4F6EF7] to-[#7C3AED] flex items-center justify-center mb-6 shadow-glow group-hover:scale-110 transition-transform duration-300 relative z-10">
+          <i data-lucide="search" class="w-6 h-6 text-white"></i>
+        </div>
+        <div class="w-7 h-7 rounded-full bg-[#07080F] border border-[#1E2235] flex items-center justify-center mb-5">
+          <span class="font-display font-700 text-[#4F6EF7] text-xs">1</span>
+        </div>
+        <h3 class="font-display font-700 text-xl text-white mb-3">Contact & Remote Check</h3>
+        <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
+          U stuurt me een bericht. Ik plan een vrijblijvend gesprek en voer een eerste gratis scan uit van uw Microsoft 365-omgeving — 100% remote, geen installatie vereist.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex flex-col items-center text-center group">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0EA5E9] to-[#4F6EF7] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+          <i data-lucide="file-text" class="w-6 h-6 text-white"></i>
+        </div>
+        <div class="w-7 h-7 rounded-full bg-[#07080F] border border-[#1E2235] flex items-center justify-center mb-5">
+          <span class="font-display font-700 text-[#4F6EF7] text-xs">2</span>
+        </div>
+        <h3 class="font-display font-700 text-xl text-white mb-3">No-Nonsense Rapport</h3>
+        <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
+          U ontvangt een helder rapport met de gevonden kwetsbaarheden, de ernst ervan, en een prioriteitenlijst. Geen technisch jargon — gewoon duidelijk wat er mis is en hoe we het fixen.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex flex-col items-center text-center group">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#10B981] to-[#0EA5E9] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+          <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
+        </div>
+        <div class="w-7 h-7 rounded-full bg-[#07080F] border border-[#1E2235] flex items-center justify-center mb-5">
+          <span class="font-display font-700 text-emerald-400 text-xs">3</span>
+        </div>
+        <h3 class="font-display font-700 text-xl text-white mb-3">One-Click Fix</h3>
+        <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
+          Na uw goedkeuring voer ik alle aanpassingen remote door. U hoeft niets te doen — ik fix alles op de achtergrond en bezorg u een bevestiging wanneer uw omgeving beveiligd is.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PRICING SECTION                                     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="tarieven" class="py-28 border-t border-[#1E2235] relative overflow-hidden">
+  <div class="orb w-[600px] h-[400px] bg-[#4F6EF7] bottom-[-100px] left-[-200px] opacity-10"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <div class="text-center mb-16">
+      <div class="pill bg-[rgba(79,110,247,0.08)] text-[#7EB3FF] border border-[rgba(79,110,247,0.2)] mb-6 mx-auto w-fit text-[11px]">
+        <i data-lucide="tag" class="w-3 h-3"></i>
+        Transparante tarieven
+      </div>
+      <h2 class="font-display text-4xl lg:text-5xl font-800 text-white leading-tight mb-5">
+        Eerlijke prijs,<br/>
+        <span class="gradient-text">maximale waarde</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto font-light">
+        Kies het pakket dat past bij uw situatie. Geen verborgen kosten, geen verplichtingen.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6 items-stretch">
+
+      <!-- Tier 1: Free -->
+      <div class="pricing-card bg-[#131722] border border-[#1E2235] rounded-2xl p-8 flex flex-col transition-all duration-300 shadow-card">
+        <div>
+          <p class="font-display font-600 text-gray-400 text-sm uppercase tracking-widest mb-1">Free Quickscan</p>
+          <div class="flex items-end gap-1 mb-6">
+            <span class="font-display font-800 text-5xl text-white">€0</span>
+            <span class="text-gray-500 mb-2">/ eenmalig</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8">
+            Vrijblijvende eerste screening van uw Microsoft 365-omgeving. Ideaal om te ontdekken waar u staat.
+          </p>
+          <ul class="flex flex-col gap-3 mb-8">
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+              Microsoft Secure Score analyse
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+              MFA-status check
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+              Korte risicosamenvatting (PDF)
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-500">
+              <i data-lucide="x" class="w-4 h-4 text-gray-600 flex-shrink-0"></i>
+              Remote implementatie
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-500">
+              <i data-lucide="x" class="w-4 h-4 text-gray-600 flex-shrink-0"></i>
+              Doorlopende monitoring
+            </li>
+          </ul>
+        </div>
+        <div class="mt-auto">
+          <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl font-display font-600 text-sm text-gray-300 border border-[#1E2235] hover:border-[rgba(79,110,247,0.4)] hover:text-white transition-all duration-200">
+            Gratis starten
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tier 2: Essential (featured) -->
+      <div class="pricing-card relative bg-gradient-to-b from-[#141928] to-[#0F1320] border border-[rgba(79,110,247,0.4)] rounded-2xl p-8 flex flex-col transition-all duration-300 shadow-glow">
+        <!-- Popular badge -->
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+          <span class="pill bg-gradient-to-r from-[#4F6EF7] to-[#7C3AED] text-white border-0 text-[10px] shadow-glow">
+            ⭐ Meest populair
+          </span>
+        </div>
+
+        <div>
+          <p class="font-display font-600 text-[#7EB3FF] text-sm uppercase tracking-widest mb-1">Essential Security Fix</p>
+          <div class="flex items-end gap-1 mb-1">
+            <span class="font-display font-800 text-5xl text-white">€299</span>
+            <span class="text-gray-500 mb-2">/ eenmalig</span>
+          </div>
+          <p class="text-xs text-gray-500 mb-6">Excl. BTW · Student-tarief</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8">
+            Volledige audit én remote implementatie van alle kritische beveiligingsmaatregelen. Perfect voor KMO's die snel compliant willen worden.
+          </p>
+          <ul class="flex flex-col gap-3 mb-8">
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+              Alles van Free Quickscan
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+              Volledige M365 security audit
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+              Remote implementatie van fixes
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+              Conditional Access configuratie
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-[#4F6EF7] flex-shrink-0"></i>
+              30 dagen nazorg & vragen
+            </li>
+          </ul>
+        </div>
+        <div class="mt-auto">
+          <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl font-display font-600 text-sm text-white bg-gradient-to-r from-[#4F6EF7] to-[#7C3AED] hover:opacity-90 transition-all duration-200 shadow-glow">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            Start nu
+          </a>
+        </div>
+      </div>
+
+      <!-- Tier 3: Continuous Guard -->
+      <div class="pricing-card bg-[#131722] border border-[#1E2235] rounded-2xl p-8 flex flex-col transition-all duration-300 shadow-card">
+        <div>
+          <p class="font-display font-600 text-emerald-400 text-sm uppercase tracking-widest mb-1">Continuous Remote Guard</p>
+          <div class="flex items-end gap-1 mb-1">
+            <span class="font-display font-800 text-5xl text-white">€99</span>
+            <span class="text-gray-500 mb-2">/ maand</span>
+          </div>
+          <p class="text-xs text-gray-500 mb-6">Excl. BTW · Opzegbaar per maand</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8">
+            Permanente waakzaamheid. Ik monitor uw omgeving actief, reageer op alerts en voer maandelijkse security-updates door.
+          </p>
+          <ul class="flex flex-col gap-3 mb-8">
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+              Alles van Essential Fix
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+              Maandelijkse security-review
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+              Incidentrespons bij alerts (48u SLA)
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+              Kwartaalrapport + aanbevelingen
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+              Prioriteitsondersteuning via WhatsApp
+            </li>
+          </ul>
+        </div>
+        <div class="mt-auto">
+          <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl font-display font-600 text-sm text-gray-300 border border-[rgba(16,185,129,0.3)] hover:border-emerald-400 hover:text-emerald-400 transition-all duration-200">
+            Meer info
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="text-center text-gray-600 text-xs mt-8">
+      Alle prijzen zijn indicatief en op maat bespreekbaar. Als student-ondernemer ben ik vrijgesteld van BTW-aanrekening (art. 56bis W.BTW).
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- CONTACT SECTION                                     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="contact" class="py-28 border-t border-[#1E2235] relative overflow-hidden">
+  <div class="orb w-[500px] h-[500px] bg-[#4F6EF7] top-[-100px] right-[-150px] opacity-10"></div>
+  <div class="orb w-[300px] h-[300px] bg-[#10B981] bottom-[-50px] left-[10%] opacity-10"></div>
+
+  <div class="max-w-2xl mx-auto px-6 relative z-10">
+
+    <div class="text-center mb-12">
+      <div class="pill bg-[rgba(79,110,247,0.08)] text-[#7EB3FF] border border-[rgba(79,110,247,0.2)] mb-6 mx-auto w-fit text-[11px]">
+        <i data-lucide="mail" class="w-3 h-3"></i>
+        Laten we praten
+      </div>
+      <h2 class="font-display text-4xl lg:text-5xl font-800 text-white leading-tight mb-5">
+        Start uw gratis<br/>
+        <span class="gradient-text">security scan</span>
+      </h2>
+      <p class="text-gray-400 text-lg font-light">
+        Vul het formulier in — ik neem binnen 24 uur contact op voor een vrijblijvend gesprek.
+      </p>
+    </div>
+
+    <!-- Contact card -->
+    <div class="bg-[#131722] border border-[#1E2235] rounded-2xl p-8 lg:p-10 shadow-card">
+      <form id="contact-form" onsubmit="handleSubmit(event)">
+        <div class="flex flex-col gap-5">
+
+          <div>
+            <label class="block font-display font-500 text-sm text-gray-300 mb-2">Naam <span class="text-red-400">*</span></label>
+            <input type="text" placeholder="Jan Janssen" required class="form-input" />
+          </div>
+
+          <div>
+            <label class="block font-display font-500 text-sm text-gray-300 mb-2">Bedrijfsnaam <span class="text-red-400">*</span></label>
+            <input type="text" placeholder="Janssen & Partners BV" required class="form-input" />
+          </div>
+
+          <div>
+            <label class="block font-display font-500 text-sm text-gray-300 mb-2">E-mailadres <span class="text-red-400">*</span></label>
+            <input type="email" placeholder="jan@janssen-partners.be" required class="form-input" />
+          </div>
+
+          <div>
+            <label class="block font-display font-500 text-sm text-gray-300 mb-2">Sector</label>
+            <select class="form-input" style="appearance:none; background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22><path fill=%22%234B5563%22 d=%22M6 8L1 3h10z%22/></svg>'); background-repeat: no-repeat; background-position: right 16px center; cursor:pointer;">
+              <option value="" disabled selected style="background:#131722;">Kies uw sector</option>
+              <option style="background:#131722;">Vastgoed</option>
+              <option style="background:#131722;">Boekhouding & Financiën</option>
+              <option style="background:#131722;">Medische praktijk / Zorg</option>
+              <option style="background:#131722;">Advocatuur / Juridisch</option>
+              <option style="background:#131722;">Handel & Retail</option>
+              <option style="background:#131722;">Andere</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-display font-500 text-sm text-gray-300 mb-2">Bericht <span class="text-gray-600">(optioneel)</span></label>
+            <textarea placeholder="Vertel me kort over uw huidige IT-situatie of vragen..." rows="4" class="form-input resize-none"></textarea>
+          </div>
+
+          <button type="submit" id="submit-btn" class="w-full inline-flex items-center justify-center gap-2.5 py-4 rounded-xl font-display font-700 text-base text-white bg-gradient-to-r from-[#4F6EF7] to-[#7C3AED] hover:opacity-90 hover:shadow-glow transition-all duration-300 mt-2">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+            Verstuur & ontvang gratis scan
+          </button>
+
+          <!-- Success message (hidden) -->
+          <div id="success-msg" class="hidden text-center p-4 rounded-xl bg-[rgba(16,185,129,0.08)] border border-[rgba(16,185,129,0.2)]">
+            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 mx-auto mb-2"></i>
+            <p class="font-display font-600 text-emerald-400 text-sm">Bericht ontvangen!</p>
+            <p class="text-gray-500 text-xs mt-1">Ik neem binnen 24 uur contact op.</p>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <!-- Contact alternatives -->
+    <div class="mt-8 grid grid-cols-3 gap-4 text-center">
+      <div class="p-4 rounded-xl bg-[#131722] border border-[#1E2235]">
+        <i data-lucide="linkedin" class="w-5 h-5 text-[#4F6EF7] mx-auto mb-2"></i>
+        <p class="text-xs text-gray-500 font-medium">LinkedIn</p>
+        <p class="text-xs text-gray-600 mt-0.5">Austyn Ntoubandi</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[#131722] border border-[#1E2235]">
+        <i data-lucide="mail" class="w-5 h-5 text-[#4F6EF7] mx-auto mb-2"></i>
+        <p class="text-xs text-gray-500 font-medium">E-mail</p>
+        <p class="text-xs text-gray-600 mt-0.5">Direct contact</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[#131722] border border-[#1E2235]">
+        <i data-lucide="map-pin" class="w-5 h-5 text-[#4F6EF7] mx-auto mb-2"></i>
+        <p class="text-xs text-gray-500 font-medium">Locatie</p>
+        <p class="text-xs text-gray-600 mt-0.5">België — Remote</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- FOOTER                                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<footer class="border-t border-[#1E2235] py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-[#4F6EF7] to-[#7C3AED] flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M8 1L2 4V8C2 11.3 4.6 14.4 8 15C11.4 14.4 14 11.3 14 8V4L8 1Z" fill="white" fill-opacity="0.9"/>
+            </svg>
+          </div>
+          <span class="font-display font-700 text-[14px] text-white">Austyn Ntoubandi</span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+          IT Security specialist en student-ondernemer gespecialiseerd in Microsoft 365 en cloud beveiliging voor Belgische KMO's.
+        </p>
+        <p class="text-gray-600 text-xs mt-4">
+          Student-ondernemer onder Belgisch recht (art. 56bis W.BTW) · HOGENT, Dendermonde
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <p class="font-display font-600 text-xs text-gray-400 uppercase tracking-widest mb-4">Diensten</p>
+        <ul class="flex flex-col gap-2.5">
+          <li><a href="#diensten" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">M365 Security Audit</a></li>
+          <li><a href="#diensten" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">Netwerk & VPN</a></li>
+          <li><a href="#diensten" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">Cloud Back-up</a></li>
+          <li><a href="#tarieven" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">Tarieven</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display font-600 text-xs text-gray-400 uppercase tracking-widest mb-4">Info</p>
+        <ul class="flex flex-col gap-2.5">
+          <li><a href="#waarom" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">Waarom Ik</a></li>
+          <li><a href="#contact" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">Contact</a></li>
+          <li><a href="#contact" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">Gratis Scan</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="border-t border-[#1E2235] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-xs">© 2026 Austyn Ntoubandi. Alle rechten voorbehouden.</p>
+      <div class="flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-gray-600 text-xs">Beschikbaar voor nieuwe klanten</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<script>
+  // Init Lucide icons
+  lucide.createIcons();
+
+  // Mobile menu toggle
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('open');
+    const icon = this.querySelector('[data-lucide]');
+    icon.setAttribute('data-lucide', menu.classList.contains('open') ? 'x' : 'menu');
+    lucide.createIcons();
+  });
+
+  // Contact form submit (demo)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.innerHTML = '<svg class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/></svg> Versturen...';
+    btn.disabled = true;
+    setTimeout(() => {
+      e.target.style.display = 'none';
+      document.getElementById('success-msg').classList.remove('hidden');
+    }, 1500);
+  }
+
+  // Smooth scroll offset for sticky nav
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const offset = 72;
+      window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+    });
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.service-card, .problem-card, .pricing-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
