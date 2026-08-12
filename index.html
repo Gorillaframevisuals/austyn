@@ -1,766 +1,261 @@
 <!DOCTYPE html>
-<html lang="nl" class="scroll-smooth">
+<html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Austyn Ntoubandi — Microsoft 365 Security Specialist voor Belgische KMO's</title>
-  <meta name="description" content="Gespecialiseerde Microsoft 365 Security consultant voor Belgische KMO's met vaste prijzen, persoonlijk contact en praktische beveiliging." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Outfit', 'sans-serif'],
-            body: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            ink: '#07080F',
-            surface: '#0E1018',
-            card: '#131722',
-            border: '#1E2235',
-            blue: {
-              accent: '#4F6EF7',
-              soft: '#3B55E0',
-              glow: 'rgba(79,110,247,0.15)',
-            },
-            violet: '#7C3AED',
-            emerald: {
-              accent: '#10B981',
-              glow: 'rgba(16,185,129,0.12)',
-            },
-          },
-          boxShadow: {
-            glow: '0 0 40px rgba(99,102,241,0.25)',
-            'glow-em': '0 0 40px rgba(16,185,129,0.14)',
-            card: '0 1px 3px rgba(0,0,0,0.4), 0 4px 24px rgba(0,0,0,0.3)',
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.6s ease forwards',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            fadeUp: {
-              '0%': { opacity: 0, transform: 'translateY(24px)' },
-              '100%': { opacity: 1, transform: 'translateY(0)' },
-            },
-          },
-        },
-      },
-    }
-  </script>
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      background-color: #07080F;
-      color: #E5E7EB;
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1, h2, h3, h4, h5, .font-display {
-      font-family: 'Outfit', sans-serif;
-    }
-
-    /* Hero grid pattern */
-    .hero-grid {
-      background-image:
-        linear-gradient(rgba(79,110,247,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(79,110,247,0.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-
-    /* Gradient text */
-    .gradient-text {
-      background: linear-gradient(135deg, #4F6EF7 0%, #7C3AED 50%, #10B981 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .gradient-text-blue {
-      background: linear-gradient(135deg, #7EB3FF 0%, #4F6EF7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Glowing orb */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      pointer-events: none;
-      opacity: 0.3;
-    }
-
-    /* Card hover */
-    .service-card {
-      transition: all 0.3s ease;
-    }
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 0 1px rgba(79,110,247,0.4), 0 20px 60px rgba(0,0,0,0.5), 0 0 50px rgba(79,110,247,0.12);
-    }
-
-    .pricing-card {
-      transition: all 0.3s ease;
-    }
-    .pricing-card:hover {
-      transform: translateY(-4px);
-    }
-    
-    .pricing-card-featured {
-      transition: all 0.3s ease;
-    }
-    .pricing-card-featured:hover {
-      transform: translateY(-4px) scale(1.05);
-    }
-
-    /* Pill badge */
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 14px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    /* Nav blur */
-    .nav-blur {
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-
-    /* Input styles */
-    .form-input, .form-select, .form-textarea {
-      background: #0E1018;
-      border: 1px solid #1E2235;
-      border-radius: 8px;
-      padding: 12px 16px;
-      color: #E5E7EB;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      width: 100%;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-    }
-
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: #4F6EF7;
-      box-shadow: 0 0 0 3px rgba(79,110,247,0.12);
-    }
-
-    .form-input::placeholder, .form-textarea::placeholder {
-      color: #4B5563;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #07080F; }
-    ::-webkit-scrollbar-thumb { background: #1E2235; border-radius: 3px; }
-
-    /* Mobile nav */
-    #mobile-menu { display: none; }
-    #mobile-menu.open { display: block; }
-
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; animation: none !important; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Austyn Ntoubandi | Microsoft 365 Security Consultant</title>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- NAVIGATION                                          -->
-<!-- ═══════════════════════════════════════════════════ -->
-<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-[#1E2235] bg-[rgba(7,8,15,0.85)]">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <!-- Logo -->
-    <a href="#" class="flex items-center gap-2.5">
-      <div class="w-8 h-8 flex items-center justify-center">
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ng1" x1="0" y1="0" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#4F6EF7"/>
-              <stop offset="1" stop-color="#7C3AED"/>
-            </linearGradient>
-          </defs>
-          <path d="M15 2L3 7V14C3 20.6 8.4 26.7 15 28.5C21.6 26.7 27 20.6 27 14V7L15 2Z" fill="url(#ng1)"/>
-          <path d="M10 15L13.5 18.5L20 11" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="font-display font-700 text-[15px] text-white tracking-tight">Austyn Ntoubandi</span>
-    </a>
+    <!-- Navigatie -->
+    <header>
+        <nav>
+            <strong>Austyn Ntoubandi</strong>
+            <ul>
+                <li><a href="#over-mij">Over Mij</a></li>
+                <li><a href="#diensten">Diensten</a></li>
+                <li><a href="#pakketten">Pakketten</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact">Gratis Quick Scan</a>
+        </nav>
+    </header>
 
-    <!-- Desktop links -->
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#waarom" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">Over Mij</a>
-      <a href="#diensten" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">Diensten</a>
-      <a href="#tarieven" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">Pakketten</a>
-      <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 font-medium">Contact</a>
-    </div>
-
-    <!-- CTA -->
-    <div class="hidden md:flex items-center gap-3">
-      <button onclick="selectPackage('scan')" class="pill bg-[rgba(79,110,247,0.12)] text-[#7EB3FF] border border-[rgba(79,110,247,0.25)] hover:bg-[rgba(79,110,247,0.2)] transition-all duration-200 cursor-pointer text-[11px]">
-        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        Gratis Quick Scan
-      </button>
-    </div>
-
-    <!-- Mobile hamburger -->
-    <button id="menu-toggle" class="md:hidden text-gray-400 hover:text-white" aria-label="Menu openen">
-      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-    </button>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden border-t border-[#1E2235] bg-[#07080F]">
-    <div class="px-6 py-4 flex flex-col gap-4">
-      <a href="#waarom" class="text-sm text-gray-400 hover:text-white transition-colors font-medium" onclick="closeMenu()">Over Mij</a>
-      <a href="#diensten" class="text-sm text-gray-400 hover:text-white transition-colors font-medium" onclick="closeMenu()">Diensten</a>
-      <a href="#tarieven" class="text-sm text-gray-400 hover:text-white transition-colors font-medium" onclick="closeMenu()">Pakketten</a>
-      <a href="#contact" class="text-sm text-gray-400 hover:text-white transition-colors font-medium" onclick="closeMenu()">Contact</a>
-      <button onclick="selectPackage('scan'); closeMenu();" class="pill bg-[rgba(79,110,247,0.12)] text-[#7EB3FF] border border-[rgba(79,110,247,0.25)] w-fit text-[11px]">
-        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        Gratis Quick Scan
-      </button>
-    </div>
-  </div>
-</nav>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- HERO SECTION                                        -->
-<!-- ═══════════════════════════════════════════════════ -->
-<section class="hero-grid relative min-h-screen flex items-center pt-16 overflow-hidden">
-  <!-- Ambient orbs -->
-  <div class="orb w-[600px] h-[600px] bg-[#4F6EF7] top-[-100px] left-[-200px]"></div>
-  <div class="orb w-[400px] h-[400px] bg-[#7C3AED] bottom-[-50px] right-[-100px]"></div>
-  <div class="orb w-[300px] h-[300px] bg-[#10B981] top-[30%] right-[10%] opacity-20"></div>
-
-  <div class="max-w-7xl mx-auto px-6 py-20 lg:py-28 relative z-10 w-full">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <!-- Left: Copy -->
-      <div>
-        <div class="pill bg-[rgba(16,185,129,0.08)] text-emerald-400 border border-[rgba(16,185,129,0.2)] mb-8 w-fit text-[11px]">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block"></span>
-          Microsoft 365 Security Consultant
-        </div>
-
-        <h1 class="font-display text-4xl lg:text-5xl xl:text-[60px] font-800 leading-[1.1] tracking-tight text-white mb-6">
-          Beveilig uw Microsoft 365-omgeving zonder de overhead van grote IT-bureaus.
-        </h1>
-
-        <p class="text-lg text-gray-400 leading-relaxed max-w-lg mb-4 font-light">
-          Praktische Microsoft 365-security voor Belgische KMO's: van MFA en Conditional Access tot Defender, e-mailbeveiliging en NIS2-readiness. 
-        </p>
-        <p class="text-base text-gray-300 leading-relaxed max-w-lg mb-10 font-medium border-l-2 border-[#4F6EF7] pl-4">
-          Uw Microsoft 365-omgeving bevat krachtige beveiligingsmogelijkheden, maar deze moeten correct worden geconfigureerd.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4">
-          <button onclick="selectPackage('scan')" class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-display font-600 text-[15px] text-white bg-gradient-to-r from-[#4F6EF7] to-[#7C3AED] hover:opacity-90 hover:shadow-glow transition-all duration-300 cursor-pointer">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            Vraag gratis Quick Scan aan
-          </button>
-          <a href="#tarieven" class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-display font-600 text-[15px] text-gray-300 bg-[rgba(255,255,255,0.04)] border border-[#1E2235] hover:border-[rgba(79,110,247,0.4)] hover:text-white transition-all duration-300">
-            Bekijk pakketten
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <!-- Trust signals -->
-        <div class="mt-12 flex flex-wrap items-center gap-6">
-          <div class="flex items-center gap-2 text-xs text-gray-500">
-            <svg class="w-3.5 h-3.5 text-[#4F6EF7]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Vaste, transparante prijzen</span>
-          </div>
-          <div class="flex items-center gap-2 text-xs text-gray-500">
-            <svg class="w-3.5 h-3.5 text-[#4F6EF7]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Persoonlijk contact in België</span>
-          </div>
-          <div class="flex items-center gap-2 text-xs text-gray-500">
-            <svg class="w-3.5 h-3.5 text-[#4F6EF7]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
-            <span>NIS2-readiness voorbereiding</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Visual -->
-      <div class="flex justify-center lg:justify-end hidden md:flex">
-        <div class="relative w-full max-w-md">
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#4F6EF7] to-[#7C3AED] blur-2xl opacity-25 scale-105"></div>
-          <div class="relative bg-[#131722] border border-[#1E2235] rounded-2xl p-8 shadow-card">
-            
-            <div class="flex items-center justify-between mb-8 border-b border-[#1E2235] pb-4">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-[#0E1018] border border-[#1E2235] flex items-center justify-center">
-                  <svg class="w-5 h-5 text-[#4F6EF7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                </div>
-                <div>
-                  <h3 class="text-white font-medium text-sm">Secure Score Status</h3>
-                  <p class="text-xs text-emerald-400">Beveiliging optimaal</p>
-                </div>
-              </div>
-              <div class="text-right">
-                <span class="text-2xl font-bold text-white">87%</span>
-              </div>
-            </div>
-
-            <div class="space-y-4">
-              <div class="bg-[#0E1018] p-4 rounded-xl border border-[#1E2235] flex items-center justify-between">
-                <span class="text-sm text-gray-300">Identity Security</span>
-                <span class="text-xs px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded-md">Beveiligd</span>
-              </div>
-              <div class="bg-[#0E1018] p-4 rounded-xl border border-[#1E2235] flex items-center justify-between">
-                <span class="text-sm text-gray-300">Defender Policies</span>
-                <span class="text-xs px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded-md">Geconfigureerd</span>
-              </div>
-              <div class="bg-[#0E1018] p-4 rounded-xl border border-[#1E2235] flex items-center justify-between">
-                <span class="text-sm text-gray-300">NIS2-Readiness</span>
-                <span class="text-xs px-2 py-1 bg-[#4F6EF7]/10 text-[#4F6EF7] rounded-md">In uitvoering</span>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- OVER MIJ SECTIE (VERBETERD)                         -->
-<!-- ═══════════════════════════════════════════════════ -->
-<section id="waarom" class="py-24 bg-[#0E1018] border-y border-[#1E2235]">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid lg:grid-cols-12 gap-16 items-center">
-      
-      <!-- Linker kolom: Tekst, Missie & Certificaten -->
-      <div class="lg:col-span-7">
-        <h2 class="font-display text-3xl md:text-4xl font-700 text-white mb-6">Persoonlijk contact, <br/><span class="gradient-text">duidelijke beveiliging.</span></h2>
+    <!-- Hero -->
+    <section>
+        <p><strong>Microsoft 365 Security Consultant</strong></p>
+        <h1>Beveilig uw Microsoft 365-omgeving zonder de overhead van grote IT-bureaus.</h1>
+        <p>Praktische Microsoft 365-security voor Belgische KMO's: van MFA en Conditional Access tot Defender, e-mailbeveiliging en NIS2-readiness.</p>
+        <p>Uw Microsoft 365-omgeving bevat krachtige beveiligingsmogelijkheden, maar deze moeten correct worden geconfigureerd.</p>
         
-        <div class="space-y-4 text-gray-400 leading-relaxed text-[15px] mb-10">
-          <p>
-            Ik ben <strong>Austyn Ntoubandi</strong>, een gepassioneerde student-ondernemer System & Network Management in Gent met een laserfocus op Microsoft 365 en cloud security.
-          </p>
-          <p>
-            <strong>Mijn missie?</strong> Ik zag hoe lokale KMO's vaak tussen de mazen van het net vallen. Ze lopen grote risico's op cyberaanvallen, maar vinden traditionele IT-bureaus te duur, te traag of te complex. Daarom bied ik een no-nonsense aanpak om juist déze bedrijven te beschermen met vaste prijzen en transparante communicatie.
-          </p>
-          <p>
-            Dat ik nog volop studeer, is mijn <strong>grootste kracht</strong>. Ik werk dagelijks met de allerlaatste cloud-technologieën en NIS2-richtlijnen, vrij van vastgeroeste 'on-premise' denkwijzen. Bij mij vindt u geen zware overhead van accountmanagers, maar directe, up-to-date kennis en snelle actie op maat van uw onderneming.
-          </p>
+        <div>
+            <a href="#contact">Vraag gratis Quick Scan aan</a>
+            <a href="#pakketten">Bekijk pakketten</a>
         </div>
 
-        <!-- Certificeringen blok -->
-        <h4 class="text-sm font-display font-600 text-white uppercase tracking-wider mb-4 border-b border-[#1E2235] pb-2">Gecertificeerde Kennis</h4>
-        <div class="flex flex-wrap gap-4">
-          
-          <div class="flex items-center gap-3 bg-[#131722] border border-[#1E2235] rounded-xl p-3 pr-5">
-            <div class="w-10 h-10 rounded-lg bg-[rgba(79,110,247,0.1)] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#4F6EF7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-            </div>
-            <div class="text-xs">
-              <div class="text-white font-bold font-display tracking-wide">Microsoft 365</div>
-              <div class="text-gray-500">Security Fundamentals</div>
-            </div>
-          </div>
+        <ul>
+            <li>✓ Vaste, transparante prijzen</li>
+            <li>✓ Persoonlijk contact in België</li>
+            <li>✓ NIS2-readiness voorbereiding</li>
+        </ul>
 
-          <div class="flex items-center gap-3 bg-[#131722] border border-[#1E2235] rounded-xl p-3 pr-5">
-            <div class="w-10 h-10 rounded-lg bg-[rgba(16,185,129,0.1)] flex items-center justify-center">
-              <svg class="w-5 h-5 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-            </div>
-            <div class="text-xs">
-              <div class="text-white font-bold font-display tracking-wide">Identity & Access</div>
-              <div class="text-gray-500">Cloud Protection</div>
-            </div>
-          </div>
-
+        <div>
+            <h3>Secure Score Status</h3>
+            <p>Beveiliging optimaal: <strong>87%</strong></p>
+            <ul>
+                <li>Identity Security: Beveiligd</li>
+                <li>Defender Policies: Geconfigureerd</li>
+                <li>NIS2-Readiness: In uitvoering</li>
+            </ul>
         </div>
-      </div>
+    </section>
 
-      <!-- Rechter kolom: Foto & Testimonial -->
-      <div class="lg:col-span-5 space-y-6">
+    <!-- Over Mij -->
+    <section id="over-mij">
+        <h2>Persoonlijk contact, duidelijke beveiliging.</h2>
+        <p>Ik ben Austyn Ntoubandi, een gepassioneerde student-ondernemer System & Network Management in Gent met een laserfocus op Microsoft 365 en cloud security.</p>
+        <p>Mijn missie? Ik zag hoe lokale KMO's vaak tussen de mazen van het net vallen. Ze lopen grote risico's op cyberaanvallen, maar vinden traditionele IT-bureaus te duur, te traag of te complex. Daarom bied ik een no-nonsense aanpak om juist déze bedrijven te beschermen met vaste prijzen en transparante communicatie.</p>
+        <p>Dat ik nog volop studeer, is mijn grootste kracht. Ik werk dagelijks met de allerlaatste cloud-technologieën en NIS2-richtlijnen, vrij van vastgeroste 'on-premise' denkwijzen. Bij mij vindt u geen zware overhead van accountmanagers, maar directe, up-to-date kennis en snelle actie op maat van uw onderneming.</p>
         
-        <!-- FOTO PLACEHOLDER: VERVANG DEZE HELE DIV DOOR EEN <img src="jouwfoto.jpg" /> TAG MET DEZELFDE CLASSES -->
-        <div class="relative w-full aspect-[4/3] md:aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-[#131722] border border-[#1E2235] shadow-card group">
-          <!-- Suggestion overlay for user (verwijder dit als je de foto plaatst) -->
-          <img src="images/austyn-vogue.jpeg" alt="Austyn Vogue" class="w-full h-full object-cover">
-          <!-- Ambient background effect -->
-          <div class="absolute inset-0 bg-gradient-to-br from-[#4F6EF7]/10 to-[#7C3AED]/10"></div>
+        <h3>Gecertificeerde Kennis</h3>
+        <ul>
+            <li>Microsoft 365 Security Fundamentals</li>
+            <li>Identity & Access Cloud Protection</li>
+        </ul>
+    </section>
+
+    <!-- Diensten -->
+    <section id="diensten">
+        <h2>Gespecialiseerde Microsoft 365 Security</h2>
+        <p>Gerichte oplossingen om uw werkplek, data en identiteiten te beschermen volgens de best practices van Microsoft.</p>
+
+        <div>
+            <h3>Identity Security</h3>
+            <ul>
+                <li>MFA afdwingen</li>
+                <li>Conditional Access</li>
+                <li>Entra ID configuratie</li>
+                <li>Admin accounts beveiligen</li>
+                <li>Privileged access beheer</li>
+            </ul>
         </div>
 
-        <!-- Social Proof / Review card
-        <div class="bg-gradient-to-r from-[#131722] to-[#0E1018] p-6 rounded-2xl border border-[#1E2235] relative overflow-hidden shadow-card">
-          <div class="absolute top-[-20px] right-[-20px] w-24 h-24 bg-[#10B981] opacity-10 blur-2xl rounded-full"></div>
-          <div class="flex gap-4 items-start">
-            <div class="text-[#10B981] mt-1 shrink-0">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
+        <div>
+            <h3>Email Security</h3>
+            <ul>
+                <li>SPF configuratie</li>
+                <li>DKIM implementatie</li>
+                <li>DMARC controle</li>
+                <li>Anti-phishing instellingen</li>
+                <li>Exchange Online bescherming</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Microsoft Defender</h3>
+            <ul>
+                <li>Defender configuratie</li>
+                <li>Security policies opzetten</li>
+                <li>Endpoint beveiliging</li>
+                <li>Threat protection</li>
+                <li>Vulnerability management</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Data Protection</h3>
+            <ul>
+                <li>SharePoint security</li>
+                <li>OneDrive sharing review</li>
+                <li>External sharing beleid</li>
+                <li>Guest access controle</li>
+                <li>Data loss prevention (DLP) basis</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Security Audits</h3>
+            <ul>
+                <li>Secure Score analyse</li>
+                <li>Configuratiecontrole (50+ punten)</li>
+                <li>Concrete verbeterpunten</li>
+                <li>Periodieke reviews</li>
+                <li>Heldere rapportage</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>NIS2 Readiness</h3>
+            <ul>
+                <li>Technische voorbereiding</li>
+                <li>Security gap analyse</li>
+                <li>Strategische roadmap</li>
+                <li>Basis hygiëne implementatie</li>
+                <li>Technische compliancy check</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Pakketten -->
+    <section id="pakketten">
+        <h2>Transparante Pakketten</h2>
+        <p>Vaste prijzen. Geen verborgen kosten. Kies het niveau van beveiliging dat bij uw KMO past.</p>
+
+        <div>
+            <h3>Lead Magnet: Gratis Microsoft 365 Quick Scan</h3>
+            <p>Een vrijblijvende kennismaking en initiële risico-inschatting van uw huidige omgeving. Ontdek direct de grootste kwetsbaarheden.</p>
+            <a href="#contact">Vraag Gratis Aan</a>
+        </div>
+
+        <div>
+            <h3>Security Baseline</h3>
+            <p>De essentiële beveiligingslaag voor Microsoft 365-omgevingen (tot max. 25 gebruikers).</p>
+            <p><strong>€795 / eenmalig</strong></p>
+            <a href="#contact">Selecteer Baseline</a>
+            <ul>
+                <li>✓ Microsoft 365 security assessment</li>
+                <li>✓ MFA configuratie en enforcement</li>
+                <li>✓ Conditional Access basisconfiguratie*</li>
+                <li>✓ Security Defaults review</li>
+                <li>✓ Legacy Authentication uitschakelen</li>
+                <li>✓ Administratoraccounts opschonen</li>
+                <li>✓ SPF, DKIM & DMARC controle</li>
+                <li>✓ Secure Score nulmeting</li>
+                <li>✓ Basis securityrapport</li>
+                <li>✓ 30 dagen ondersteuning</li>
+            </ul>
+        </div>
+
+        <div>
+            <p><strong>MEEST GEKOZEN</strong></p>
+            <h3>Security Audit & Hardening</h3>
+            <p>Een volledige analyse en verbetering van uw Microsoft 365-beveiliging inclusief NIS2-readiness (tot max. 25 gebruikers).</p>
+            <p><strong>€1.495 / eenmalig</strong></p>
+            <a href="#contact">Selecteer Audit & Hardening</a>
+            <ul>
+                <li>✓ Alles uit Security Baseline</li>
+                <li>✓ Microsoft 365 audit op 50+ controlepunten</li>
+                <li>✓ Identity & Access review</li>
+                <li>✓ Conditional Access optimalisatie</li>
+                <li>✓ Privileged & break-glass accounts review</li>
+                <li>✓ Microsoft Defender optimalisatie</li>
+                <li>✓ Exchange Online & Anti-phishing review</li>
+                <li>✓ SharePoint, OneDrive & Guest access review</li>
+                <li>✓ Secure Score verbeterplan & roadmap</li>
+                <li>✓ Technische NIS2-readiness analyse</li>
+                <li>✓ Persoonlijke rapportbespreking</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Managed Security Partner</h3>
+            <p>Doorlopende opvolging, beheer en monitoring van uw Microsoft 365-security.</p>
+            <p><strong>€249 / maand</strong></p>
+            <a href="#contact">Selecteer Managed Partner</a>
+            <ul>
+                <li>✓ Secure Score monitoring</li>
+                <li>✓ Maandelijkse security review</li>
+                <li>✓ Controle administratoraccounts</li>
+                <li>✓ Gebruikersbeheer controle</li>
+                <li>✓ Guest access controle</li>
+                <li>✓ Security recommendations opvolgen</li>
+                <li>✓ Kwartaaloverleg</li>
+                <li>✓ Prioritaire ondersteuning binnen 24 uur</li>
+            </ul>
+        </div>
+
+        <p><small>Disclaimer: Alle prijzen zijn exclusief btw. Microsoft 365-licenties zijn niet inbegrepen. *Geavanceerde beveiligingsfuncties zoals Conditional Access zijn afhankelijk van uw Microsoft 365-licentie (bijv. Business Premium of Entra ID P1).</small></p>
+    </section>
+
+    <!-- Contact Formulier -->
+    <section id="contact">
+        <h2>Start met het beveiligen van uw KMO</h2>
+        <p>Vul het formulier in en ik neem binnen 24 uur contact met u op.</p>
+
+        <form action="#" method="POST">
+            <div>
+                <label>Volledige Naam</label>
+                <input type="text" name="naam" required>
             </div>
             <div>
-              <h4 class="text-white font-medium mb-2 text-sm font-display tracking-wide">Bewezen Resultaat</h4>
-              <p class="text-sm text-gray-400 italic leading-relaxed">"Austyn communiceert helder en heeft onze Microsoft-omgeving waterdicht gemaakt zonder dat we een vermogen kwijt waren. Onze Secure Score is in een week van 34% naar 85% gegaan met behoud van werkbaarheid. Aanrader!"</p>
-              <div class="mt-3 flex items-center gap-2">
-                <div class="w-6 h-6 rounded-full bg-[#1E2235] flex items-center justify-center text-xs font-bold text-gray-400">Z</div>
-                <p class="text-xs text-gray-500 font-medium">Zaakvoerder, KMO in regio Gent</p>
-              </div>
+                <label>Bedrijfsnaam</label>
+                <input type="text" name="bedrijf" required>
             </div>
-          </div>
-        </div> -->
+            <div>
+                <label>Zakelijk E-mailadres</label>
+                <input type="email" name="email" required>
+            </div>
+            <div>
+                <label>Aantal Medewerkers (Microsoft 365)</label>
+                <select name="medewerkers" required>
+                    <option value="1-10">1 - 10 medewerkers</option>
+                    <option value="11-25">11 - 25 medewerkers</option>
+                    <option value="26-50+">26 - 50+ medewerkers</option>
+                </select>
+            </div>
+            <div>
+                <label>Interesse In</label>
+                <select name="interesse" required>
+                    <option value="quickscan">Gratis Microsoft 365 Quick Scan</option>
+                    <option value="baseline">Security Baseline (€795)</option>
+                    <option value="audit">Security Audit & Hardening + NIS2 Readiness (€1.495)</option>
+                    <option value="managed">Managed Security Partner (€249 / maand)</option>
+                </select>
+            </div>
+            <div>
+                <label>Extra Informatie / Vragen (Optioneel)</label>
+                <textarea name="bericht"></textarea>
+            </div>
+            <button type="submit">Claim mijn risico-analyse</button>
+            <p><small>🔒 Geen verplichtingen. Uw gegevens worden vertrouwelijk behandeld.</small></p>
+        </form>
+    </section>
 
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- DIENSTEN SECTIE                                     -->
-<!-- ═══════════════════════════════════════════════════ -->
-<section id="diensten" class="py-24 bg-[#07080F]">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-3xl md:text-4xl font-700 text-white mb-4">Gespecialiseerde Microsoft 365 Security</h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">Gerichte oplossingen om uw werkplek, data en identiteiten te beschermen volgens de best practices van Microsoft.</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Identity Security -->
-      <div class="service-card bg-[#131722] border border-[#1E2235] p-8 rounded-2xl">
-        <div class="w-12 h-12 rounded-xl bg-[rgba(79,110,247,0.1)] border border-[rgba(79,110,247,0.2)] flex items-center justify-center mb-6">
-          <svg class="w-6 h-6 text-[#4F6EF7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
-        </div>
-        <h3 class="text-xl font-display font-600 text-white mb-4">Identity Security</h3>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> MFA afdwingen</li>
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> Conditional Access</li>
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> Entra ID configuratie</li>
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> Admin accounts beveiligen</li>
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> Privileged access beheer</li>
-        </ul>
-      </div>
-
-      <!-- Email Security -->
-      <div class="service-card bg-[#131722] border border-[#1E2235] p-8 rounded-2xl">
-        <div class="w-12 h-12 rounded-xl bg-[rgba(124,58,237,0.1)] border border-[rgba(124,58,237,0.2)] flex items-center justify-center mb-6">
-          <svg class="w-6 h-6 text-[#7C3AED]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-        </div>
-        <h3 class="text-xl font-display font-600 text-white mb-4">Email Security</h3>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> SPF configuratie</li>
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> DKIM implementatie</li>
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> DMARC controle</li>
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> Anti-phishing instellingen</li>
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> Exchange Online bescherming</li>
-        </ul>
-      </div>
-
-      <!-- Microsoft Defender -->
-      <div class="service-card bg-[#131722] border border-[#1E2235] p-8 rounded-2xl">
-        <div class="w-12 h-12 rounded-xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] flex items-center justify-center mb-6">
-          <svg class="w-6 h-6 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-        </div>
-        <h3 class="text-xl font-display font-600 text-white mb-4">Microsoft Defender</h3>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Defender configuratie</li>
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Security policies opzetten</li>
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Endpoint beveiliging</li>
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Threat protection</li>
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Vulnerability management</li>
-        </ul>
-      </div>
-
-      <!-- Data Protection -->
-      <div class="service-card bg-[#131722] border border-[#1E2235] p-8 rounded-2xl">
-        <div class="w-12 h-12 rounded-xl bg-[rgba(79,110,247,0.1)] border border-[rgba(79,110,247,0.2)] flex items-center justify-center mb-6">
-          <svg class="w-6 h-6 text-[#4F6EF7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
-        </div>
-        <h3 class="text-xl font-display font-600 text-white mb-4">Data Protection</h3>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> SharePoint security</li>
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> OneDrive sharing review</li>
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> External sharing beleid</li>
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> Guest access controle</li>
-          <li class="flex items-center gap-2"><span class="text-[#4F6EF7]">•</span> Data loss prevention (DLP) basis</li>
-        </ul>
-      </div>
-
-      <!-- Security Audits -->
-      <div class="service-card bg-[#131722] border border-[#1E2235] p-8 rounded-2xl">
-        <div class="w-12 h-12 rounded-xl bg-[rgba(124,58,237,0.1)] border border-[rgba(124,58,237,0.2)] flex items-center justify-center mb-6">
-          <svg class="w-6 h-6 text-[#7C3AED]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
-        </div>
-        <h3 class="text-xl font-display font-600 text-white mb-4">Security Audits</h3>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> Secure Score analyse</li>
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> Configuratiecontrole (50+ punten)</li>
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> Concrete verbeterpunten</li>
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> Periodieke reviews</li>
-          <li class="flex items-center gap-2"><span class="text-[#7C3AED]">•</span> Heldere rapportage</li>
-        </ul>
-      </div>
-
-      <!-- NIS2 Readiness -->
-      <div class="service-card bg-[#131722] border border-[#1E2235] p-8 rounded-2xl">
-        <div class="w-12 h-12 rounded-xl bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.2)] flex items-center justify-center mb-6">
-          <svg class="w-6 h-6 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-        </div>
-        <h3 class="text-xl font-display font-600 text-white mb-4">NIS2 Readiness</h3>
-        <ul class="space-y-2 text-sm text-gray-400">
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Technische voorbereiding</li>
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Security gap analyse</li>
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Strategische roadmap</li>
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Basis hygiëne implementatie</li>
-          <li class="flex items-center gap-2"><span class="text-[#10B981]">•</span> Technische compliancy check</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- TARIEVEN SECTIE                                     -->
-<!-- ═══════════════════════════════════════════════════ -->
-<section id="tarieven" class="py-24 bg-[#0E1018] border-t border-[#1E2235]">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-3xl md:text-4xl font-700 text-white mb-4">Transparante Pakketten</h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">Vaste prijzen. Geen verborgen kosten. Kies het niveau van beveiliging dat bij uw KMO past.</p>
-    </div>
-
-    <!-- Quick Scan Banner -->
-    <div class="mb-12 bg-[#131722] border border-[#1E2235] rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-card pricing-card">
-      <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(79,110,247,0.1)] text-[#4F6EF7] text-xs font-semibold uppercase tracking-wider mb-3">
-          Lead Magnet
-        </div>
-        <h3 class="font-display text-2xl font-bold text-white mb-2">Gratis Microsoft 365 Quick Scan</h3>
-        <p class="text-gray-400 max-w-xl">Een vrijblijvende kennismaking en initiële risico-inschatting van uw huidige omgeving. Ontdek direct de grootste kwetsbaarheden.</p>
-      </div>
-      <button onclick="selectPackage('scan')" class="whitespace-nowrap px-8 py-3.5 rounded-xl font-display font-600 text-[15px] text-[#4F6EF7] bg-[rgba(79,110,247,0.1)] border border-[rgba(79,110,247,0.3)] hover:bg-[rgba(79,110,247,0.2)] transition-all duration-300">
-        Vraag Gratis Aan
-      </button>
-    </div>
-
-    <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-      
-      <!-- Pakket 1: Baseline -->
-      <div class="pricing-card bg-[#131722] border border-[#1E2235] rounded-2xl p-8 flex flex-col h-full relative">
-        <h3 class="font-display text-xl font-bold text-white mb-2">Security Baseline</h3>
-        <p class="text-sm text-gray-400 mb-6 min-h-[40px]">De essentiële beveiligingslaag voor kleine Microsoft 365-omgevingen.</p>
-        <div class="mb-6">
-          <span class="text-4xl font-display font-800 text-white">€795</span>
-          <span class="text-gray-500 text-sm"> / eenmalig</span>
-        </div>
-        <button onclick="selectPackage('baseline')" class="w-full py-3 rounded-xl font-display font-600 text-sm text-white bg-[#1E2235] hover:bg-[#2A2F45] transition-colors mb-8">
-          Selecteer Baseline
-        </button>
-        <div class="space-y-3 text-sm text-gray-300 flex-grow">
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> Microsoft 365 security assessment</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> MFA configuratie en enforcement</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> Conditional Access basisconfiguratie</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> Security Defaults review</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> Legacy Authentication uitschakelen</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> Administratoraccounts opschonen</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> SPF, DKIM & DMARC controle</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> Secure Score nulmeting</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> Basis securityrapport</p>
-          <p class="flex items-start gap-3"><span class="text-emerald-400">✓</span> 30 dagen ondersteuning</p>
-        </div>
-      </div>
-
-      <!-- Pakket 2: Audit & Hardening (Meest Gekozen) -->
-      <div class="pricing-card-featured bg-[#0E1018] border-2 border-[#6366F1] shadow-glow rounded-2xl p-8 flex flex-col h-full relative z-10 transform lg:scale-105">
-        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#4F6EF7] to-[#7C3AED] text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider">
-          MEEST GEKOZEN
-        </div>
-        <h3 class="font-display text-xl font-bold text-white mb-2 mt-2">Security Audit & Hardening</h3>
-        <p class="text-sm text-gray-400 mb-6 min-h-[40px]">Een volledige analyse en verbetering van uw Microsoft 365-beveiliging inclusief NIS2-readiness.</p>
-        <div class="mb-6">
-          <span class="text-4xl font-display font-800 text-white">€1.495</span>
-          <span class="text-gray-500 text-sm"> / eenmalig</span>
-        </div>
-        <button onclick="selectPackage('audit')" class="w-full py-3 rounded-xl font-display font-600 text-sm text-white bg-gradient-to-r from-[#4F6EF7] to-[#7C3AED] hover:opacity-90 transition-all shadow-glow mb-8">
-          Selecteer Audit & Hardening
-        </button>
-        <div class="space-y-3 text-sm text-gray-300 flex-grow">
-          <p class="flex items-start gap-3 font-medium text-white"><span class="text-[#4F6EF7]">✓</span> Alles uit Security Baseline</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Microsoft 365 audit op 50+ controlepunten</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Identity & Access review</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Conditional Access optimalisatie</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Privileged & break-glass accounts review</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Microsoft Defender optimalisatie</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Exchange Online & Anti-phishing review</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> SharePoint, OneDrive & Guest access review</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Secure Score verbeterplan & roadmap</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Technische NIS2-readiness analyse</p>
-          <p class="flex items-start gap-3"><span class="text-[#4F6EF7]">✓</span> Persoonlijke rapportbespreking</p>
-        </div>
-      </div>
-
-      <!-- Pakket 3: Managed -->
-      <div class="pricing-card bg-[#131722] border border-[#1E2235] rounded-2xl p-8 flex flex-col h-full relative">
-        <h3 class="font-display text-xl font-bold text-white mb-2">Managed Security Partner</h3>
-        <p class="text-sm text-gray-400 mb-6 min-h-[40px]">Doorlopende opvolging, beheer en monitoring van uw Microsoft 365-security.</p>
-        <div class="mb-6">
-          <span class="text-4xl font-display font-800 text-white">€249</span>
-          <span class="text-gray-500 text-sm"> / maand</span>
-        </div>
-        <button onclick="selectPackage('managed')" class="w-full py-3 rounded-xl font-display font-600 text-sm text-white bg-[#1E2235] hover:bg-[#2A2F45] transition-colors mb-8">
-          Selecteer Managed Partner
-        </button>
-        <div class="space-y-3 text-sm text-gray-300 flex-grow">
-          <p class="flex items-start gap-3"><span class="text-purple-400">✓</span> Secure Score monitoring</p>
-          <p class="flex items-start gap-3"><span class="text-purple-400">✓</span> Maandelijkse security review</p>
-          <p class="flex items-start gap-3"><span class="text-purple-400">✓</span> Controle administratoraccounts</p>
-          <p class="flex items-start gap-3"><span class="text-purple-400">✓</span> Gebruikersbeheer controle</p>
-          <p class="flex items-start gap-3"><span class="text-purple-400">✓</span> Guest access controle</p>
-          <p class="flex items-start gap-3"><span class="text-purple-400">✓</span> Security recommendations opvolgen</p>
-          <p class="flex items-start gap-3"><span class="text-purple-400">✓</span> Kwartaaloverleg</p>
-          <p class="flex items-start gap-3"><span class="text-purple-400">✓</span> Prioritaire ondersteuning binnen 24 uur</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Pricing Disclaimer -->
-    <div class="mt-10 text-center">
-      <p class="text-xs text-gray-500 italic max-w-3xl mx-auto">
-        Disclaimer: Alle prijzen zijn exclusief btw. Microsoft 365-licenties zijn niet inbegrepen. Beschikbare beveiligingsfuncties zijn afhankelijk van uw huidige Microsoft 365-licentie (bijv. Business Premium, E3 of E5).
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- CONTACT SECTIE                                      -->
-<!-- ═══════════════════════════════════════════════════ -->
-<section id="contact" class="py-24 bg-[#07080F]">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <h2 class="font-display text-3xl md:text-4xl font-700 text-white mb-4">Start met het beveiligen van uw KMO</h2>
-      <p class="text-gray-400">Vul het formulier in en ik neem binnen 24 uur contact met u op.</p>
-    </div>
-
-    <div class="bg-[#131722] border border-[#1E2235] p-8 md:p-10 rounded-2xl shadow-card">
-      <form class="space-y-6" action="https://formsubmit.co/austynntoubandi@gmail.com" method="POST">
-        
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2" for="name">Volledige Naam</label>
-            <input type="text" id="name" name="Naam" class="form-input" placeholder="Jan Peeters" required />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2" for="company">Bedrijfsnaam</label>
-            <input type="text" id="company" name="Bedrijf" class="form-input" placeholder="Peeters KMO" required />
-          </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2" for="email">Zakelijk E-mailadres</label>
-            <input type="email" id="email" name="Email" class="form-input" placeholder="jan@bedrijf.be" required />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2" for="users">Aantal Medewerkers (Microsoft 365)</label>
-            <select id="users" name="Aantal Medewerkers" class="form-select">
-              <option value="1-10">1 - 10 medewerkers</option>
-              <option value="11-25">11 - 25 medewerkers</option>
-              <option value="26-50">26 - 50+ medewerkers</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-400 mb-2" for="packageSelection">Interesse In</label>
-          <select id="packageSelection" name="Gekozen Pakket" class="form-select text-white font-medium bg-[#0E1018]">
-            <option value="scan">Gratis Microsoft 365 Quick Scan</option>
-            <option value="baseline">Security Baseline (€795)</option>
-            <option value="audit">Security Audit & Hardening + NIS2 Readiness (€1.495)</option>
-            <option value="managed">Managed Security Partner (€249 / maand)</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-400 mb-2" for="message">Extra Informatie / Vragen (Optioneel)</label>
-          <textarea id="message" name="Bericht" rows="4" class="form-textarea" placeholder="Vertel kort wat over uw huidige IT-omgeving..."></textarea>
-        </div>
-
-        <button type="submit" class="w-full py-4 rounded-xl font-display font-600 text-[15px] text-white bg-gradient-to-r from-[#4F6EF7] to-[#7C3AED] hover:opacity-90 hover:shadow-glow transition-all duration-300">
-          Aanvraag Versturen
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- FOOTER                                              -->
-<!-- ═══════════════════════════════════════════════════ -->
-<footer class="bg-[#0E1018] border-t border-[#1E2235] py-12">
-  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-    <div class="flex items-center gap-2.5">
-      <div class="w-6 h-6 flex items-center justify-center">
-        <svg width="24" height="24" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 2L3 7V14C3 20.6 8.4 26.7 15 28.5C21.6 26.7 27 20.6 27 14V7L15 2Z" fill="#4F6EF7"/>
-          <path d="M10 15L13.5 18.5L20 11" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="font-display font-700 text-sm text-white">Austyn Ntoubandi</span>
-    </div>
-    
-    <div class="text-sm text-gray-500">
-      &copy; 2026 Austyn Ntoubandi. Alle rechten voorbehouden. Gebaseerd in Gent, België.
-    </div>
-  </div>
-</footer>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- JAVASCRIPT VOOR INTERACTIE                          -->
-<!-- ═══════════════════════════════════════════════════ -->
-<script>
-  // Mobile Menu Toggle
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  menuToggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-  });
-
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-  }
-
-  // Pricing knoppen logic: Selecteer juiste formulier optie en scroll
-  function selectPackage(packageValue) {
-    // Sluit mobile menu indien open
-    closeMenu();
-    
-    // Selecteer de juiste optie in de dropdown
-    const selectBox = document.getElementById('packageSelection');
-    if(selectBox) {
-      selectBox.value = packageValue;
-    }
-    
-    // Smooth scroll naar contactsectie
-    const contactSection = document.getElementById('contact');
-    if(contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-</script>
+    <!-- Footer -->
+    <footer>
+        <p><strong>Austyn Ntoubandi</strong></p>
+        <p>&copy; 2026 Austyn Ntoubandi. Alle rechten voorbehouden. Gevestigd in Gent, België.</p>
+    </footer>
 
 </body>
 </html>
